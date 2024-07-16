@@ -53,14 +53,36 @@ public:
 };
 
 
-class food
-{
-    int size;
-    int energy;
+class Food {
+private:
+    int size;       // Size of the food (assuming size is in some unit)
+    int energy;     // Energy content of the food (assuming energy is in some unit)
 
+public:
+    // Constructor with default values
+    Food(int size = 0, int energy = 0) : size(size), energy(energy) {}
 
-};
+    // Getter and setter methods
+    int getSize() const {
+        return size;
+    }
 
+    void setSize(int newSize) {
+        size = newSize;
+    }
+
+    int getEnergy() const {
+        return energy;
+    }
+
+    void setEnergy(int newEnergy) {
+        energy = newEnergy;
+    }
+
+    // Other methods if needed
+    void printDetails() const {
+        std::cout << "Food Size: " << size << ", Energy: " << energy << std::endl;
+    }
 
 
 int main(void)
@@ -71,7 +93,7 @@ int main(void)
 
 
     std::vector<Organism> totalOrganisms;
-    std::vector<food>foods;
+    std::vector<food>totalFoods;
     int organismCount(30);
     int foodCount = 80;
     for (int i=0;i<organismCount;i++)
@@ -87,6 +109,12 @@ int main(void)
     
     }
 
+    for (int i = 0; i < foodCount; i++)
+    {
+        totalFood.push_back()
+
+
+    }
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -115,6 +143,7 @@ int main(void)
             DrawCircleLines(one.posX, one.posY, one.range, ORANGE);                         // Draw circle outline
 
         }
+
 
                                
         ClearBackground(RAYWHITE);
