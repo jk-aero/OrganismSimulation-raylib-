@@ -26,7 +26,7 @@ int getRandomInt(int max, int min = 0) {
 class Organism
 {
 public:
-    int size;
+    int size,speed;
     int posX, posY, range;
     bool isDead;
     double energy;
@@ -34,6 +34,7 @@ public:
     Organism(int size, int posX, int posY, int range ,double energy)
         : size(size), posX(posX), posY(posY), range(range),energy(energy), isDead(false) {
         // Initialize other properties as needed
+        
     }
 
     // Destructor (if needed)
@@ -45,6 +46,10 @@ public:
     void move(int newX, int newY) {
         posX += newX;
         posY += newY;
+    }
+    void drawOrganism() {
+        DrawCircle(posX, posY, size, ORANGE);
+        DrawCircleLines(posX, posY, range, ORANGE);
     }
 
     void consumeEnergy(double amount) {
@@ -145,11 +150,16 @@ public:
 
             for (Organism one : totalOrganisms)
             {
-                int x = getRandomInt(1,0);
-                int y = getRandomInt(1,0);
-                one.move(x, y);
-                DrawCircle(one.posX, one.posY, one.size, ORANGE);
-                DrawCircleLines(one.posX, one.posY, one.range, ORANGE);     
+                int x = getRandomInt(1,-1);
+                int y = getRandomInt(1,-1);
+                if (!one.isDead)
+                {
+                    one.move(x, y);
+                    one.consumeEnergy(0.001);
+                    one.drawOrganism();
+                }
+                
+               
                // Draw circle outline
 
             }
