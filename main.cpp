@@ -26,8 +26,8 @@ public:
     bool isDead;
     double energy;
     // Constructor
-    Organism(int size, int posX, int posY, double energy)
-        : size(size), posX(posX), posY(posY), energy(energy), isDead(false) {
+    Organism(int size, int posX, int posY, int range ,double energy)
+        : size(size), posX(posX), posY(posY), range(range),energy(energy), isDead(false) {
         // Initialize other properties as needed
     }
 
@@ -79,9 +79,10 @@ int main(void)
         int size = getRandomInt(10,5);
         int energy = 100;
         int x = getRandomInt(screenWidth);
+        int range = getRandomInt(30,size+5);
         int y = getRandomInt(screenHeight);
         
-        totalOrganisms.push_back(Organism(size, x, y, energy));
+        totalOrganisms.push_back(Organism(size, x, y,range, energy));
     
     
     }
@@ -110,10 +111,13 @@ int main(void)
 
         for (Organism one : totalOrganisms)
         {
-            DrawCircle(one.size, one.posX, one.posY, ORANGE);
-        }
-                               
+            DrawCircle(one.posX,one.posY, one.size, ORANGE);
+            DrawCircleLines(one.posX, one.posY, one.range, ORANGE);                         // Draw circle outline
 
+        }
+
+                               
+        ClearBackground(RAYWHITE);
         EndDrawing();
             }
 
